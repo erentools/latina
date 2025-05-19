@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contenido Exclusivo</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #111;
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      text-align: center;
+    }
+
+    video {
+      width: 100%;
+      max-height: 50vh;
+      object-fit: cover;
+      border-bottom: 4px solid #e91e63;
+    }
+
+    .promo {
+      font-size: 18px;
+      margin: 20px 15px;
+      color: #ffd700;
+    }
+
+    .whatsapp {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #25D366;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-size: 16px;
+      margin: 10px auto;
+      width: 80%;
+    }
+
+    .whatsapp img {
+      width: 22px;
+      height: 22px;
+      margin-right: 10px;
+    }
+
+    .live-btn {
+      margin: 15px auto;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      padding: 14px 25px;
+      font-size: 18px;
+      border-radius: 25px;
+      cursor: pointer;
+      width: 80%;
+    }
+
+    #liveSection {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #liveSection video {
+      width: 100%;
+      max-height: 40vh;
+    }
+
+    .chatbox {
+      background-color: #222;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 20px 10px;
+      max-width: 95%;
+      overflow-y: auto;
+      max-height: 300px;
+    }
+
+    .chat-message {
+      background: #333;
+      margin: 10px 0;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 15px;
+      text-align: left;
+    }
+
+    .chat-message.user {
+      background: #444;
+      text-align: right;
+    }
+
+    .chat-input {
+      display: flex;
+      margin: 0 10px 20px;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 10px 0 0 10px;
+      border: none;
+      font-size: 15px;
+    }
+
+    .chat-input button {
+      padding: 10px 15px;
+      background-color: #e91e63;
+      border: none;
+      color: white;
+      border-radius: 0 10px 10px 0;
+      cursor: pointer;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Video teaser -->
+  <video autoplay muted loop>
+    <source src="video1.mp4" type="video/mp4">
+    Tu navegador no soporta video HTML5.
+  </video>
+
+  <!-- Promoción -->
+  <div class="promo">
+    ¡Tienes 24 horas de contenido GRATIS a partir de ahora!<br>
+    Escríbeme en WhatsApp para todo mi contenido exclusivo 🔥
+  </div>
+
+  <!-- Botón WhatsApp -->
+  <a class="whatsapp" href="https://wa.me/34694233958" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    Escríbeme ahora
+  </a>
+
+  <!-- Botón ver en vivo -->
+  <button class="live-btn" onclick="verEnVivo()">Ver en vivo 🔴</button>
+
+  <!-- Segundo video -->
+  <div id="liveSection">
+    <video controls>
+      <source src="video2.mp4" type="video/mp4">
+      Tu navegador no soporta este video.
+    </video>
+  </div>
+
+  <!-- Chat -->
+  <div class="chatbox" id="chatBox">
+    <div class="chat-message">💋 Hola amor... ¿te gustó mi video?</div>
+  </div>
+
+  <div class="chat-input">
+    <input type="text" id="userInput" placeholder="Escríbeme algo...">
+    <button onclick="enviarMensaje()">Enviar</button>
+  </div>
+
+  <script>
+    function verEnVivo() {
+      document.getElementById('liveSection').style.display = 'block';
+    }
+
+    const respuestasSimuladas = [
+      "😈 Estoy pensando en ti... 💭",
+      "🔥 Me encantaría que me vieras en privado...",
+      "👅 ¿Qué te gustaría que hiciera ahora mismo?",
+      "💖 Mmm... me pones nerviosa, pero me encanta..."
+    ];
+
+    function enviarMensaje() {
+      const input = document.getElementById("userInput");
+      const texto = input.value.trim();
+      if (texto === "") return;
+
+      const chat = document.getElementById("chatBox");
+
+      const mensajeUsuario = document.createElement("div");
+      mensajeUsuario.className = "chat-message user";
+      mensajeUsuario.textContent = texto;
+      chat.appendChild(mensajeUsuario);
+
+      input.value = "";
+
+      setTimeout(() => {
+        const respuesta = respuestasSimuladas[Math.floor(Math.random() * respuestasSimuladas.length)];
+        const mensajeBot = document.createElement("div");
+        mensajeBot.className = "chat-message";
+        mensajeBot.textContent = respuesta;
+        chat.appendChild(mensajeBot);
+        chat.scrollTop = chat.scrollHeight;
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
